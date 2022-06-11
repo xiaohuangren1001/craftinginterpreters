@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<title>Introduction &middot; Crafting Interpreters</title>
+<title>介绍 &middot; 合成解释器</title>
 
 <!-- Tell mobile browsers we're optimized for them and they don't need to crop
      the viewport. -->
@@ -34,23 +34,23 @@
 <nav class="wide">
   <a href="/"><img src="image/logotype.png" title="Crafting Interpreters"></a>
   <div class="contents">
-<h3><a href="#top">Introduction<small>1</small></a></h3>
+<h3><a href="#top">介绍<small>1</small></a></h3>
 
 <ul>
-    <li><a href="#why-learn-this-stuff"><small>1.1</small> Why Learn This Stuff?</a></li>
-    <li><a href="#how-the-book-is-organized"><small>1.2</small> How the Book Is Organized</a></li>
-    <li><a href="#the-first-interpreter"><small>1.3</small> The First Interpreter</a></li>
-    <li><a href="#the-second-interpreter"><small>1.4</small> The Second Interpreter</a></li>
+    <li><a href="#why-learn-this-stuff"><small>1.1</small> 为什么要学它？</a></li>
+    <li><a href="#how-the-book-is-organized"><small>1.2</small> 这本书是如何组织的</a></li>
+    <li><a href="#the-first-interpreter"><small>1.3</small> 第一个解释器</a></li>
+    <li><a href="#the-second-interpreter"><small>1.4</small> 第二个解释器</a></li>
     <li class="divider"></li>
-    <li class="end-part"><a href="#challenges">Challenges</a></li>
-    <li class="end-part"><a href="#design-note"><small>note</small>What&#x27;s in a Name?</a></li>
+    <li class="end-part"><a href="#challenges">挑战</a></li>
+    <li class="end-part"><a href="#design-note"><small>note</small>名字有什么意义？</a></li>
 </ul>
 
 
 <div class="prev-next">
-    <a href="welcome.html" title="Welcome" class="left">&larr;&nbsp;Previous</a>
-    <a href="welcome.html" title="Welcome">&uarr;&nbsp;Up</a>
-    <a href="a-map-of-the-territory.html" title="A Map of the Territory" class="right">Next&nbsp;&rarr;</a>
+    <a href="welcome.html" title="Welcome" class="left">&larr;&nbsp;上一页</a>
+    <a href="welcome.html" title="Welcome">&uarr;&nbsp;上一级</a>
+    <a href="a-map-of-the-territory.html" title="A Map of the Territory" class="right">下一页&nbsp;&rarr;</a>
 </div>  </div>
 </nav>
 
@@ -65,23 +65,23 @@
 <nav class="floating">
   <a href="/"><img src="image/logotype.png" title="Crafting Interpreters"></a>
   <div class="expandable">
-<h3><a href="#top">Introduction<small>1</small></a></h3>
+<h3><a href="#top">介绍<small>1</small></a></h3>
 
 <ul>
-    <li><a href="#why-learn-this-stuff"><small>1.1</small> Why Learn This Stuff?</a></li>
-    <li><a href="#how-the-book-is-organized"><small>1.2</small> How the Book Is Organized</a></li>
-    <li><a href="#the-first-interpreter"><small>1.3</small> The First Interpreter</a></li>
-    <li><a href="#the-second-interpreter"><small>1.4</small> The Second Interpreter</a></li>
+    <li><a href="#why-learn-this-stuff"><small>1.1</small> 为什么要学它？</a></li>
+    <li><a href="#how-the-book-is-organized"><small>1.2</small> 这本书是如何组织的</a></li>
+    <li><a href="#the-first-interpreter"><small>1.3</small> 第一个解释器</a></li>
+    <li><a href="#the-second-interpreter"><small>1.4</small> 第二个解释器</a></li>
     <li class="divider"></li>
-    <li class="end-part"><a href="#challenges">Challenges</a></li>
-    <li class="end-part"><a href="#design-note"><small>note</small>What&#x27;s in a Name?</a></li>
+    <li class="end-part"><a href="#challenges">挑战</a></li>
+    <li class="end-part"><a href="#design-note"><small>note</small>名字有什么意义？</a></li>
 </ul>
 
 
 <div class="prev-next">
-    <a href="welcome.html" title="Welcome" class="left">&larr;&nbsp;Previous</a>
-    <a href="welcome.html" title="Welcome">&uarr;&nbsp;Up</a>
-    <a href="a-map-of-the-territory.html" title="A Map of the Territory" class="right">Next&nbsp;&rarr;</a>
+    <a href="welcome.html" title="Welcome" class="left">&larr;&nbsp;上一页</a>
+    <a href="welcome.html" title="Welcome">&uarr;&nbsp;上一级</a>
+    <a href="a-map-of-the-territory.html" title="A Map of the Territory" class="right">下一页&nbsp;&rarr;</a>
 </div>  </div>
   <a id="expand-nav">≡</a>
 </nav>
@@ -90,53 +90,28 @@
 <article class="chapter">
 
   <div class="number">1</div>
-  <h1>Introduction</h1>
+  <h1>介绍</h1>
 
 <blockquote>
-<p>Fairy tales are more than true: not because they tell us that dragons exist,
-but because they tell us that dragons can be beaten.</p>
-<p><cite>G.K. Chesterton by way of Neil Gaiman, <em>Coraline</em></cite></p>
+<p>童话故事并不现实：不是因为它告诉我们恶龙是存在的，而是因为它告诉我们恶龙是可以被打败的。</p>
+<p><cite>G.K. Chesterton在Neil Gaiman, <em>Coraline</em>中所写。</cite></p>
 </blockquote>
-<p>I&rsquo;m really excited we&rsquo;re going on this journey together. This is a book on
-implementing interpreters for programming languages. It&rsquo;s also a book on how to
-design a language worth implementing. It&rsquo;s the book I wish I&rsquo;d had when I first
-started getting into languages, and it&rsquo;s the book I&rsquo;ve been writing in my <span
-name="head">head</span> for nearly a decade.</p>
+<p>我对我们能一起踏上这趟旅程非常兴奋。这是一本为编程语言实现解释器的书籍，但它同时也是一本教我们设计出值得实现的语言的书籍。这是一本我希望我在初次踏入编程语言领域时就能拥有的书籍，并且这本书也已经在我的<span name="head">脑中</span>写了近十年。
 <aside name="head">
-<p>To my friends and family, sorry I&rsquo;ve been so absentminded!</p>
+<p>我这几年一直在想这个事，对朋友和家人我非常抱歉！</p>
 </aside>
-<p>In these pages, we will walk step-by-step through two complete interpreters for
-a full-featured language. I assume this is your first foray into languages, so
-I&rsquo;ll cover each concept and line of code you need to build a complete, usable,
-fast language implementation.</p>
-<p>In order to cram two full implementations inside one book without it turning
-into a doorstop, this text is lighter on theory than others. As we build each
-piece of the system, I will introduce the history and concepts behind it. I&rsquo;ll
-try to get you familiar with the lingo so that if you ever find yourself at a
-<span name="party">cocktail party</span> full of PL (programming language)
-researchers, you&rsquo;ll fit in.</p>
+<p>在这本书中，我们将一步一步实现两个为一个拥有完整特性编程语言实现的完整的解释器。我认为这很可能是你们对编程语言领域的第一次进军，因此我将会讲到几乎每一个概念、写到几乎每一行你需要搭建出一个完整的、可用的、快速的编程语言实现。</p>
+<p>为了能让我完整地在这本书中实现我们的两个解释器而且不让你们看了这本书之后放弃进军编程语言领域的想法，在理论方面我们的讲解要比其他的类似书籍少。由于我们要构建这个完备解释器的所有部分，我将会介绍这后面的历史和概念。我会尽量让你们了解这一领域的行话，这样如果你找到一个满是编程语言研究者的<span name="party">聚会</span>，你能和里面的人聊天。</p>
 <aside name="party">
-<p>Strangely enough, a situation I have found myself in multiple times. You
-wouldn&rsquo;t believe how much some of them can drink.</p>
+<p>尽管很奇怪，但我经常置身于这种状况。你甚至根本不知道里面的人多会喝酒（知道了你也不会信）。</p>
 </aside>
-<p>But we&rsquo;re mostly going to spend our brain juice getting the language up and
-running. This is not to say theory isn&rsquo;t important. Being able to reason
-precisely and <span name="formal">formally</span> about syntax and semantics is
-a vital skill when working on a language. But, personally, I learn best by
-doing. It&rsquo;s hard for me to wade through paragraphs full of abstract concepts and
-really absorb them. But if I&rsquo;ve coded something, run it, and debugged it, then I
-<em>get</em> it.</p>
+<p>但我们需要大量消耗脑细胞的地方是让这个语言能够顺利地构建并运行，而这并不代表理论不重要。能够把其中的语法和语义精确、<span name="formal">正式</span>地讲解出来是一种你创建编程语言时会经常用到的技能。但是个人认为，动手操作才是最好的学习方法。对我来说，把一大串满是抽象概念的词句记下来并真正消化是很困难的。但如果我写出了一点东西，运行它，然后调试它，我更能<em>理解</em>整个过程。</p>
 <aside name="formal">
-<p>Static type systems in particular require rigorous formal reasoning. Hacking on
-a type system has the same feel as proving a theorem in mathematics.</p>
-<p>It turns out this is no coincidence. In the early half of last century, Haskell
-Curry and William Alvin Howard showed that they are two sides of the same coin:
-<a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">the Curry-Howard isomorphism</a>.</p>
+<p>强类型语言通常很需要严格、正式的类型体系。自己创建一个或者理解别人的类型系统几乎和看懂一个数学定理的证明的难度相当。</p>
+<p>这并不是巧合。在20世纪中叶，哈斯卡尔·柯里和威廉·阿尔文·霍华德说明了它们不过是一个硬币的两面，这就是
+<a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">柯里-霍华德同构</a>。</p>
 </aside>
-<p>That&rsquo;s my goal for you. I want you to come away with a solid intuition of how a
-real language lives and breathes. My hope is that when you read other, more
-theoretical books later, the concepts there will firmly stick in your mind,
-adhered to this tangible substrate.</p>
+<p>而那正是我想让你达成的目标。我想让你在这个过程中能够对一个真实的语言是如何运转的有一种固化在脑子里的直觉。我希望你再读其他的更加理论化的书时，这本书中提到的这些理论能牢牢记在你心中。</p>
 <h2><a href="#why-learn-this-stuff" id="why-learn-this-stuff"><small>1&#8202;.&#8202;1</small>Why Learn This Stuff?</a></h2>
 <p>Every introduction to every compiler book seems to have this section. I don&rsquo;t
 know what it is about programming languages that causes such existential doubt.
