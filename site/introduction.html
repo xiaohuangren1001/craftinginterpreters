@@ -108,50 +108,24 @@
 <p>但我们需要大量消耗脑细胞的地方是让这个语言能够顺利地构建并运行，而这并不代表理论不重要。能够把其中的语法和语义精确、<span name="formal">正式</span>地讲解出来是一种你创建编程语言时会经常用到的技能。但是个人认为，动手操作才是最好的学习方法。对我来说，把一大串满是抽象概念的词句记下来并真正消化是很困难的。但如果我写出了一点东西，运行它，然后调试它，我更能<em>理解</em>整个过程。</p>
 <aside name="formal">
 <p>强类型语言通常很需要严格、正式的类型体系。自己创建一个或者理解别人的类型系统几乎和看懂一个数学定理的证明的难度相当。</p>
-<p>这并不是巧合。在20世纪中叶，哈斯卡尔·柯里和威廉·阿尔文·霍华德说明了它们不过是一个硬币的两面，这就是
-<a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">柯里-霍华德同构</a>。</p>
+<p>这并不是巧合。在20世纪中叶，哈斯卡尔·柯里和威廉·阿尔文·霍华德说明了它们不过是一个硬币的两面，这就是<a href="https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence">柯里-霍华德同构</a>。</p>
 </aside>
 <p>而那正是我想让你达成的目标。我想让你在这个过程中能够对一个真实的语言是如何运转的有一种固化在脑子里的直觉。我希望你再读其他的更加理论化的书时，这本书中提到的这些理论能牢牢记在你心中。</p>
-<h2><a href="#why-learn-this-stuff" id="why-learn-this-stuff"><small>1&#8202;.&#8202;1</small>Why Learn This Stuff?</a></h2>
-<p>Every introduction to every compiler book seems to have this section. I don&rsquo;t
-know what it is about programming languages that causes such existential doubt.
-I don&rsquo;t think ornithology books worry about justifying their existence. They
-assume the reader loves birds and start teaching.</p>
-<p>But programming languages are a little different. I suppose it is true that the
-odds of any of us creating a broadly successful, general-purpose programming
-language are slim. The designers of the world&rsquo;s widely used languages could fit
-in a Volkswagen bus, even without putting the pop-top camper up. If joining that
-elite group was the <em>only</em> reason to learn languages, it would be hard to
-justify. Fortunately, it isn&rsquo;t.</p>
-<h3><a href="#little-languages-are-everywhere" id="little-languages-are-everywhere"><small>1&#8202;.&#8202;1&#8202;.&#8202;1</small>Little languages are everywhere</a></h3>
-<p>For every successful general-purpose language, there are a thousand successful
-niche ones. We used to call them &ldquo;little languages&rdquo;, but inflation in the jargon
-economy led to the name &ldquo;domain-specific languages&rdquo;. These are pidgins
-tailor-built to a specific task. Think application scripting languages, template
-engines, markup formats, and configuration files.</p>
+<h2><a href="#why-learn-this-stuff" id="why-learn-this-stuff"><small>1&#8202;.&#8202;1</small>为什么要学它？</a></h2>
+<p>几乎每一本编程语言书的介绍都会有这一小节。我不知道为什么这几乎是在编程语言领域里普遍存在的一个疑问。我不认为那些研究鸟类的书籍会想到去辩护这一学问的存在。它们只是假设读者非常喜欢鸟类，然后就开始下面的讲述了。</p>
+<p>但是编程语言这一领域与鸟类学有一点小小的不同，我认为我们中的一个能够创建一个非常成功且通用的编程语言的概率很小。那些世界上不少人都在用的编程语言的设计者可能很适应大众车型的房车，即使不把上面的棚子拉开也没事。如果加入那种圈子是学习创建编程语言的<em>唯一</em>理由，那么你们肯定很难接受。幸运的是，这并不是唯一的原因。</p>
+<h3><a href="#little-languages-are-everywhere" id="little-languages-are-everywhere"><small>1&#8202;.&#8202;1&#8202;.&#8202;1</small>小型语言到处都是</a></h3>
+<p>对于每一种成功的通用编程语言，都会对应上一打专注于一小部分领域的语言。曾经我们叫它们&ldquo;小型语言&rdquo;，但是随着我们越来越爱用更加云山雾罩的术语，现在它们叫&ldquo;领域特定语言&rdquo;。它们天生就是用来完成特定任务的，比如帮助我们构建应用程序的脚本语言、模板引擎、标记语言或者配置文件。</p>
 <p><span name="little"></span><img src="image/introduction/little-languages.png" alt="A random selection of little languages." /></p>
 <aside name="little">
-<p>A random selection of some little languages you might run into.</p>
+<p>随便选了一些你可能会遇到的小型语言。</p>
 </aside>
-<p>Almost every large software project needs a handful of these. When you can, it&rsquo;s
-good to reuse an existing one instead of rolling your own. Once you factor in
-documentation, debuggers, editor support, syntax highlighting, and all of the
-other trappings, doing it yourself becomes a tall order.</p>
-<p>But there&rsquo;s still a good chance you&rsquo;ll find yourself needing to whip up a parser
-or other tool when there isn&rsquo;t an existing library that fits your needs. Even
-when you are reusing some existing implementation, you&rsquo;ll inevitably end up
-needing to debug and maintain it and poke around in its guts.</p>
-<h3><a href="#languages-are-great-exercise" id="languages-are-great-exercise"><small>1&#8202;.&#8202;1&#8202;.&#8202;2</small>Languages are great exercise</a></h3>
-<p>Long distance runners sometimes train with weights strapped to their ankles or
-at high altitudes where the atmosphere is thin. When they later unburden
-themselves, the new relative ease of light limbs and oxygen-rich air enables
-them to run farther and faster.</p>
-<p>Implementing a language is a real test of programming skill. The code is complex
-and performance critical. You must master recursion, dynamic arrays, trees,
-graphs, and hash tables. You probably use hash tables at least in your
-day-to-day programming, but do you <em>really</em> understand them? Well, after we&rsquo;ve
-crafted our own from scratch, I guarantee you will.</p>
-<p>While I intend to show you that an interpreter isn&rsquo;t as daunting as you might
+<p>基本上每一个大项目都会需要这些类似的东西。如果你可以找到符合你应用场景的语言，尽量去用它而非自己造一个。一旦你开始为文档、调试器、编辑器支持、语法高亮等其他各种陷阱而抓狂时，自己做一个小型语言去完成这些事也许是最佳选择。</p>
+<p>但是事实上我们仍然会需要用一些工具生成解析器但是虽然有这类工具却一个都不适合的这种情况。就算你在使用他人造好的轮子，你也仍然会不可避免地需要去调试和试探它能做到什么地步。</p>
+<h3><a href="#languages-are-great-exercise" id="languages-are-great-exercise"><small>1&#8202;.&#8202;1&#8202;.&#8202;2</small>做语言是对代码水平的一个练习</a></h3>
+<p>长跑运动员有时会在脚踝上绑上重物或在高海拔地区训练。这样一旦他们来到正常的（身体更加轻巧、氧气更加充足）的地带就可以跑得更远、更快。</p>
+<p>实现一门编程语言是一场对编程语言技能得真实考验。代码很有可能会不仅复杂，而且运行表现也很差。你必须要对递归、动态数组、树、图还有哈希表非常掌握才行。你很有可能每天都在用哈希表，但是你<em>真的</em>理解它吗？等我们从零开始自己做出一个之后，我保证你会理解它。</p>
+<p>当我在给你While I intend to show you that an interpreter isn&rsquo;t as daunting as you might
 believe, implementing one well is still a challenge. Rise to it, and you&rsquo;ll come
 away a stronger programmer, and smarter about how you use data structures and
 algorithms in your day job.</p>
