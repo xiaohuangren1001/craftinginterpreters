@@ -124,60 +124,25 @@
 <p>但是事实上我们仍然会需要用一些工具生成解析器但是虽然有这类工具却一个都不适合的这种情况。就算你在使用他人造好的轮子，你也仍然会不可避免地需要去调试和试探它能做到什么地步。</p>
 <h3><a href="#languages-are-great-exercise" id="languages-are-great-exercise"><small>1&#8202;.&#8202;1&#8202;.&#8202;2</small>做语言是对代码水平的一个练习</a></h3>
 <p>长跑运动员有时会在脚踝上绑上重物或在高海拔地区训练。这样一旦他们来到正常的（身体更加轻巧、氧气更加充足）的地带就可以跑得更远、更快。</p>
-<p>实现一门编程语言是一场对编程语言技能得真实考验。代码很有可能会不仅复杂，而且运行表现也很差。你必须要对递归、动态数组、树、图还有哈希表非常掌握才行。你很有可能每天都在用哈希表，但是你<em>真的</em>理解它吗？等我们从零开始自己做出一个之后，我保证你会理解它。</p>
-<p>当我在给你While I intend to show you that an interpreter isn&rsquo;t as daunting as you might
-believe, implementing one well is still a challenge. Rise to it, and you&rsquo;ll come
-away a stronger programmer, and smarter about how you use data structures and
-algorithms in your day job.</p>
-<h3><a href="#one-more-reason" id="one-more-reason"><small>1&#8202;.&#8202;1&#8202;.&#8202;3</small>One more reason</a></h3>
-<p>This last reason is hard for me to admit, because it&rsquo;s so close to my heart.
-Ever since I learned to program as a kid, I felt there was something magical
-about languages. When I first tapped out BASIC programs one key at a time I
-couldn&rsquo;t conceive how BASIC <em>itself</em> was made.</p>
-<p>Later, the mixture of awe and terror on my college friends&rsquo; faces when talking
-about their compilers class was enough to convince me language hackers were a
-different breed of human<span class="em">&mdash;</span>some sort of wizards granted privileged access to
-arcane arts.</p>
-<p>It&rsquo;s a charming <span name="image">image</span>, but it has a darker side. <em>I</em>
-didn&rsquo;t feel like a wizard, so I was left thinking I lacked some inborn quality
-necessary to join the cabal. Though I&rsquo;ve been fascinated by languages ever since
-I doodled made-up keywords in my school notebook, it took me decades to muster
-the courage to try to really learn them. That &ldquo;magical&rdquo; quality, that sense of
-exclusivity, excluded <em>me</em>.</p>
+<p>实现一门编程语言是一场对编程语言技能的真实考验。代码很有可能不仅非常复杂，而且运行表现也会很差。你必须要对递归、动态数组、树、图还有哈希表非常掌握才行。你很有可能每天都在用哈希表，但是你<em>真的</em>理解它吗？等我们从零开始自己做出一个之后，我保证你会理解它。</p>
+<p>当我在给你展示了写出一个解释器并没有那么难之后，实现一个仍然是一种挑战。如果你真的成功了，你将会成为一个更强的程序员，同时你每天使用的数据结构和算法都会被安排得更加妥当。</p>
+<h3><a href="#one-more-reason" id="one-more-reason"><small>1&#8202;.&#8202;1&#8202;.&#8202;3</small>还有一个原因</a></h3>
+<p>最后一个原因对我来说难以承认，因为它基本上是我个人的原因。从我在孩提时代学习如何编程时，我就感觉编程语言非常神奇。当我打出我人生中第一个BASIC程序时，我甚至根本不知道BASIC<em>本身</em>是怎么做出来的。</p>
+<p>后来，我那些大学里的朋友谈论到自己编程语言课程时的那种敬畏和恐惧更让我认为这些创造编程语言的人像是另一种人类<span class="em">&mdash;</span>某种能够有特权去进行神秘艺术的巫师。</p>
+<p>这是一个非常迷人的<span name="image">图像</span>，但它还有另一面。<em>我</em>并不像一个巫师，因此我后来认为我可能天生缺少某种特殊的品质，而这种品质正是我加入这一行列所必要的。尽管从我大学在笔记本上写上关键词词时已经被编程语言迷住了，我还是花了几十年的时间去鼓起勇气真正去学习它们。那种&ldquo;神奇&rdquo;的品质，那种强烈的排斥性，把<em>我</em>挡在了门外。</p>
 <aside name="image">
-<p>And its practitioners don&rsquo;t hesitate to play up this image. Two of the seminal
-texts on programming languages feature a <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">dragon</a> and a <a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html">wizard</a> on their
-covers.</p>
+<p>这个领域的写作者们对要放这类图片并没有犹豫。两本非常有名的编程语言领域教科书就在封面上用了<a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">龙</a>和<a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html">巫师</a>。</p>
 </aside>
-<p>When I did finally start cobbling together my own little interpreters, I quickly
-learned that, of course, there is no magic at all. It&rsquo;s just code, and the
-people who hack on languages are just people.</p>
-<p>There <em>are</em> a few techniques you don&rsquo;t often encounter outside of languages, and
-some parts are a little difficult. But not more difficult than other obstacles
-you&rsquo;ve overcome. My hope is that if you&rsquo;ve felt intimidated by languages and
-this book helps you overcome that fear, maybe I&rsquo;ll leave you just a tiny bit
-braver than you were before.</p>
-<p>And, who knows, maybe you <em>will</em> make the next great language. Someone has to.</p>
-<h2><a href="#how-the-book-is-organized" id="how-the-book-is-organized"><small>1&#8202;.&#8202;2</small>How the Book Is Organized</a></h2>
-<p>This book is broken into three parts. You&rsquo;re reading the first one now. It&rsquo;s a
-couple of chapters to get you oriented, teach you some of the lingo that
-language hackers use, and introduce you to Lox, the language we&rsquo;ll be
-implementing.</p>
-<p>Each of the other two parts builds one complete Lox interpreter. Within those
-parts, each chapter is structured the same way. The chapter takes a single
-language feature, teaches you the concepts behind it, and walks you through an
-implementation.</p>
-<p>It took a good bit of trial and error on my part, but I managed to carve up the
-two interpreters into chapter-sized chunks that build on the previous chapters
-but require nothing from later ones. From the very first chapter, you&rsquo;ll have a
-working program you can run and play with. With each passing chapter, it grows
-increasingly full-featured until you eventually have a complete language.</p>
-<p>Aside from copious, scintillating English prose, chapters have a few other
-delightful facets:</p>
-<h3><a href="#the-code" id="the-code"><small>1&#8202;.&#8202;2&#8202;.&#8202;1</small>The code</a></h3>
-<p>We&rsquo;re about <em>crafting</em> interpreters, so this book contains real code. Every
-single line of code needed is included, and each snippet tells you where to
-insert it in your ever-growing implementation.</p>
+<p>当我最终开始拼凑我的小型解释器时，我很快就知道，&ldquo;当然，这里没有魔法&rdquo;。不过是一堆代码，而那些创建了编程语言的人也不过是普通人。</p>
+<p>确实<em>有</em>一些技术你并不会经常在编程语言领域之外用到，而有一些部分会有点难。但是这个领域中，基本上没有能够阻挡你克服这些困难的困难。我希望如果你曾经被这一领域的各种方面里的各种原因而被吓倒，这本书能够帮你克服这份恐惧，但也许我只会给你一丁点比之前多的勇气呢。 </p>
+<p>而且，也许有一天你<em>会</em>成为下一个伟大语言的作者。毕竟总得有个人成为这种身份的人吧。</p>
+<h2><a href="#how-the-book-is-organized" id="how-the-book-is-organized"><small>1&#8202;.&#8202;2</small>这本书是如何组织的</a></h2>
+<p>这本书分为三个部分，而你正在读的就是第一部分。这一部分由多个章节组成，它会教会你那些编程语言创造者的常用术语，并且介绍 Lox 语言，也就是我们后面要实现的语言。</p>
+<p>剩下的两个部分每一个部分都会实现一个完整的 Lox 解释器。这两个部分的章节基本上都是同一种结构。这些章节讲唯一的一个语言特性，教给你它后面隐藏的概念，并且带你走过一个语言的完整实现。</p>
+<p>整个过程的实验和其中出现的错误给我带来了深刻的印象，但我还是成功地把整本书地两个解释器的各种实现过程转变为了很多可以单独作为一章的块，它们基于前面所有章节的知识，但不需要后续章节的内容。在这两个部分的第一个章节中，你就会得到一个可以运行的程序，你可以在其中随便玩耍。当一个又一个章节过去，它会慢慢生长并拥有更多特性，直到最后你完成这个语言。</p>
+<p>除去那些书中丰富的英文句子意外，每个章节还有其他的一些东西：</p>
+<h3><a href="#the-code" id="the-code"><small>1&#8202;.&#8202;2&#8202;.&#8202;1</small>代码</a></h3>
+<p>我们将要<em>合成g</em>解释器，所以这本书里会有真实的代码。Every single line of code needed is included, and each snippet tells you where to insert it in your ever-growing implementation.</p>
 <p>Many other language books and language implementations use tools like <a href="https://en.wikipedia.org/wiki/Lex_(software)">Lex</a>
 and <span name="yacc"><a href="https://en.wikipedia.org/wiki/Yacc">Yacc</a></span>, so-called <strong>compiler-compilers</strong>, that
 automatically generate some of the source files for an implementation from some
@@ -290,7 +255,7 @@ little essay on some corner of the human aspect of programming languages. I&rsqu
 expert on this<span class="em">&mdash;</span>I don&rsquo;t know if anyone really is<span class="em">&mdash;</span>so take these with a large
 pinch of salt. That should make them tastier food for thought, which is my main
 aim.</p>
-<h2><a href="#the-first-interpreter" id="the-first-interpreter"><small>1&#8202;.&#8202;3</small>The First Interpreter</a></h2>
+<h2><a href="#the-first-interpreter" id="the-first-interpreter"><small>1&#8202;.&#8202;3</small>第一个解释器</a></h2>
 <p>We&rsquo;ll write our first interpreter, jlox, in <span name="lang">Java</span>. The
 focus is on <em>concepts</em>. We&rsquo;ll write the simplest, cleanest code we can to
 correctly implement the semantics of the language. This will get us comfortable
@@ -337,7 +302,7 @@ know another object-oriented language, like C# or C++, you can muddle through.</
 very fast, but it&rsquo;s correct. However, we are only able to accomplish that by
 building on the Java virtual machine&rsquo;s own runtime facilities. We want to learn
 how Java <em>itself</em> implements those things.</p>
-<h2><a href="#the-second-interpreter" id="the-second-interpreter"><small>1&#8202;.&#8202;4</small>The Second Interpreter</a></h2>
+<h2><a href="#the-second-interpreter" id="the-second-interpreter"><small>1&#8202;.&#8202;4</small>第二个解释器</a></h2>
 <p>So in the next part, we start all over again, but this time in C. C is the
 perfect language for understanding how an implementation <em>really</em> works, all the
 way down to the bytes in memory and the code flowing through the CPU.</p>
@@ -364,15 +329,14 @@ representation (don&rsquo;t worry, I&rsquo;ll get into what that means soon), wh
 executes. This is the same technique used by implementations of Lua, Python,
 Ruby, PHP, and many other successful languages.</p>
 <aside name="compiler">
-<p>Did you think this was just an interpreter book? It&rsquo;s a compiler book as well.
-Two for the price of one!</p>
+<p>你以为这只是一本教你做解释器的书吗？它其实也时一本教你做编译器的书，一本书的钱相当于买了两本书！</p>
 </aside>
 <p>We&rsquo;ll even try our hand at benchmarking and optimization. By the end, we&rsquo;ll have
 a robust, accurate, fast interpreter for our language, able to keep up with
 other professional caliber implementations out there. Not bad for one book and a
 few thousand lines of code.</p>
 <div class="challenges">
-<h2><a href="#challenges" id="challenges">Challenges</a></h2>
+<h2><a href="#challenges" id="challenges">挑战</a></h2>
 <ol>
 <li>
 <p>There are at least six domain-specific languages used in the <a href="https://github.com/munificent/craftinginterpreters">little system
@@ -430,9 +394,9 @@ unique token.</p>
 
 <footer>
 <a href="a-map-of-the-territory.html" class="next">
-  Next Chapter: &ldquo;A Map of the Territory&rdquo; &rarr;
+  下一章：&ldquo;一张地图&rdquo; &rarr;
 </a>
-Handcrafted by Robert Nystrom&ensp;&mdash;&ensp;<a href="https://github.com/munificent/craftinginterpreters/blob/master/LICENSE" target="_blank">&copy; 2015&hairsp;&ndash;&hairsp;2021</a>
+由 Robert Nystrom 手写&ensp;&mdash;&ensp;<a href="https://hub.fastgit.xyz/munificent/craftinginterpreters/blob/master/LICENSE" target="_blank">&copy; 2015&hairsp;&ndash;&hairsp;2021</a>
 </footer>
 </article>
 
