@@ -142,42 +142,18 @@
 <p>整个过程的实验和其中出现的错误给我带来了深刻的印象，但我还是成功地把整本书地两个解释器的各种实现过程转变为了很多可以单独作为一章的块，它们基于前面所有章节的知识，但不需要后续章节的内容。在这两个部分的第一个章节中，你就会得到一个可以运行的程序，你可以在其中随便玩耍。当一个又一个章节过去，它会慢慢生长并拥有更多特性，直到最后你完成这个语言。</p>
 <p>除去那些书中丰富的英文句子意外，每个章节还有其他的一些东西：</p>
 <h3><a href="#the-code" id="the-code"><small>1&#8202;.&#8202;2&#8202;.&#8202;1</small>代码</a></h3>
-<p>我们将要<em>合成g</em>解释器，所以这本书里会有真实的代码。Every single line of code needed is included, and each snippet tells you where to insert it in your ever-growing implementation.</p>
-<p>Many other language books and language implementations use tools like <a href="https://en.wikipedia.org/wiki/Lex_(software)">Lex</a>
-and <span name="yacc"><a href="https://en.wikipedia.org/wiki/Yacc">Yacc</a></span>, so-called <strong>compiler-compilers</strong>, that
-automatically generate some of the source files for an implementation from some
-higher-level description. There are pros and cons to tools like those, and
-strong opinions<span class="em">&mdash;</span>some might say religious convictions<span class="em">&mdash;</span>on both sides.</p>
+<p>我们将要<em>合成</em>解释器，所以这本书里会有真实的代码。每一行需要的代码都已经写在了书里，而每一个片段都会告诉你需要把这一段代码插入在你正在不断完善的实现里。</p>
+<p>很多其他编程语言书和实现里使用了类似 <a href="https://en.wikipedia.org/wiki/Lex_(software)">Lex</a> 和<span name="yacc"> <a href="https://en.wikipedia.org/wiki/Yacc">Yacc</a> </span>的工具，它们统称为<strong>编译器的编译器</strong>。它们会自动从一些更高层的表述中生成特定部分的实现。对这类工具的评价褒贬不一，并且意见很强烈<span class="em">&mdash;&mdash;</span>两边的人都称这是一种信仰。</p>
 <aside name="yacc">
-<p>Yacc is a tool that takes in a grammar file and produces a source file for a
-compiler, so it&rsquo;s sort of like a &ldquo;compiler&rdquo; that outputs a compiler, which is
-where we get the term &ldquo;compiler-compiler&rdquo;.</p>
-<p>Yacc wasn&rsquo;t the first of its ilk, which is why it&rsquo;s named &ldquo;Yacc&rdquo;<span class="em">&mdash;</span><em>Yet
-Another</em> Compiler-Compiler. A later similar tool is <a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a>, named as a pun on
-the pronunciation of Yacc like &ldquo;yak&rdquo;.</p><img src="image/introduction/yak.png" alt="A yak." />
-<p>If you find all of these little self-references and puns charming and fun,
-you&rsquo;ll fit right in here. If not, well, maybe the language nerd sense of humor
-is an acquired taste.</p>
+<p>Yacc 是一个从语法文件产生一个编译器源代码的一个工具，所以它像一个以编译器为输出的编译器&mdash;&mdash;这就是&ldquo;编译器的编译器&rdquo;这一名称的由来。</p>
+<p>Yacc 并不是这一类工具的首创者，这也是为什么它被称为 &ldquo;Yacc&rdquo; <span class="em">&mdash;&mdash;</span><em>又是另一个</em>编译器的编译器（Yet Another Compiler Compiler）。后来出现的一个相似的工具是 <a href="https://en.wikipedia.org/wiki/GNU_bison">Bison</a>，以 Yacc 和 yak 之间的谐音这个双关笑话而命名。</p><img src="image/introduction/yak.png" alt="A yak." />
+<p>如果你觉得这些递归命名和双关笑话非常的迷人和有趣，你肯定会很适应这一领域。如果不觉得，好吧，那么你可能要多去理解理解这些奇怪的幽默。</p>
 </aside>
-<p>We will abstain from using them here. I want to ensure there are no dark corners
-where magic and confusion can hide, so we&rsquo;ll write everything by hand. As you&rsquo;ll
-see, it&rsquo;s not as bad as it sounds, and it means you really will understand each
-line of code and how both interpreters work.</p>
-<p>A book has different constraints from the &ldquo;real world&rdquo; and so the coding style
-here might not always reflect the best way to write maintainable production
-software. If I seem a little cavalier about, say, omitting <code>private</code> or
-declaring a global variable, understand I do so to keep the code easier on your
-eyes. The pages here aren&rsquo;t as wide as your IDE and every character counts.</p>
-<p>Also, the code doesn&rsquo;t have many comments. That&rsquo;s because each handful of lines
-is surrounded by several paragraphs of honest-to-God prose explaining it. When
-you write a book to accompany your program, you are welcome to omit comments
-too. Otherwise, you should probably use <code>//</code> a little more than I do.</p>
-<p>While the book contains every line of code and teaches what each means, it does
-not describe the machinery needed to compile and run the interpreter. I assume
-you can slap together a makefile or a project in your IDE of choice in order to
-get the code to run. Those kinds of instructions get out of date quickly, and
-I want this book to age like XO brandy, not backyard hooch.</p>
-<h3><a href="#snippets" id="snippets"><small>1&#8202;.&#8202;2&#8202;.&#8202;2</small>Snippets</a></h3>
+<p>在这里我们将要避免使用这类工具。我希望整个过程没有任何看上去像魔法或者幻术之类的东西出现，所以我们将会亲手写出每一个细节。就像你将要看到的那样，它并不像听起来那样糟糕，而且这也意味着你将会真的理解每一个解释器和每一行代码的工作原理。</p>
+<p>一本书和&ldquo;现实世界&rdquo;所依赖的东西是不一样的，因此这里的码风不一定就是在各种需要维护的大型产品项目中最好的码风。就像你可能会看到的那样，我会省略类似 <code>private</code> 这样的关键字或者声明全局变量，请理解我这样做只是为了让这些代码能够在你们的眼中变得更加简洁和易于理解。书页可不像你的 IDE 那样宽，每多一个字符都很珍贵。</p>
+<p>同样的，代码里并没有多少注释，这是因为对代码的几乎所有说明都在这段代码的前面或者后面的几段里完整地呈现了。当你要写一本包括代码的书时，你也可以模仿我去省略注释，否则你应该比我使用更多的 <code>//</code>。</p>
+<p>这本书的确包含了每一行代码并且告诉我们它的意义，但是整本书都没有提及我们应当如何编译并且运行它。我假设你能把这些代码以一个 Makefile 或者在 IDE 里的配置文件的方式去配置好环境并运行代码。这类教程很快就会随着各类工具的版本迭代而失效，但我希望这本书像白兰地一样能够保存很久，而不像家酿酒那样会很快过期。</p>
+<h3><a href="#snippets" id="snippets"><small>1&#8202;.&#8202;2&#8202;.&#8202;2</small>代码片段</a></h3>
 <p>Since the book contains literally every line of code needed for the
 implementations, the snippets are quite precise. Also, because I try to keep the
 program in a runnable state even when major features are missing, sometimes we
@@ -203,7 +179,7 @@ above or below to show where it goes in the existing surrounding code. There is
 also a little blurb telling you in which file and where to place the snippet. If
 that blurb says &ldquo;replace _ lines&rdquo;, there is some existing code between the faded
 lines that you need to remove and replace with the new snippet.</p>
-<h3><a href="#asides" id="asides"><small>1&#8202;.&#8202;2&#8202;.&#8202;3</small>Asides</a></h3>
+<h3><a href="#asides" id="asides"><small>1&#8202;.&#8202;2&#8202;.&#8202;3</small>旁注</a></h3>
 <p><span name="joke">Asides</span> contain biographical sketches, historical
 background, references to related topics, and suggestions of other areas to
 explore. There&rsquo;s nothing that you <em>need</em> to know in them to understand later
@@ -213,7 +189,7 @@ might be a little sad.</p>
 <p>Well, some asides do, at least. Most of them are just dumb jokes and amateurish
 drawings.</p>
 </aside>
-<h3><a href="#challenges_" id="challenges_"><small>1&#8202;.&#8202;2&#8202;.&#8202;4</small>Challenges</a></h3>
+<h3><a href="#challenges_" id="challenges_"><small>1&#8202;.&#8202;2&#8202;.&#8202;4</small>挑战</a></h3>
 <p>Each chapter ends with a few exercises. Unlike textbook problem sets, which tend
 to review material you already covered, these are to help you learn <em>more</em> than
 what&rsquo;s in the chapter. They force you to step off the guided path and explore on
@@ -228,7 +204,7 @@ interpreter you&rsquo;re building. You&rsquo;ll want to implement those in a cop
 code. The later chapters assume your interpreter is in a pristine
 (&ldquo;unchallenged&rdquo;?) state.</p>
 </aside>
-<h3><a href="#design-notes" id="design-notes"><small>1&#8202;.&#8202;2&#8202;.&#8202;5</small>Design notes</a></h3>
+<h3><a href="#design-notes" id="design-notes"><small>1&#8202;.&#8202;2&#8202;.&#8202;5</small>设计说明</a></h3>
 <p>Most &ldquo;programming language&rdquo; books are strictly programming language
 <em>implementation</em> books. They rarely discuss how one might happen to <em>design</em> the
 language being implemented. Implementation is fun because it is so <span
