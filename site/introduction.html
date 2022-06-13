@@ -152,13 +152,10 @@
 <p>在这里我们将要避免使用这类工具。我希望整个过程没有任何看上去像魔法或者幻术之类的东西出现，所以我们将会亲手写出每一个细节。就像你将要看到的那样，它并不像听起来那样糟糕，而且这也意味着你将会真的理解每一个解释器和每一行代码的工作原理。</p>
 <p>一本书和&ldquo;现实世界&rdquo;所依赖的东西是不一样的，因此这里的码风不一定就是在各种需要维护的大型产品项目中最好的码风。就像你可能会看到的那样，我会省略类似 <code>private</code> 这样的关键字或者声明全局变量，请理解我这样做只是为了让这些代码能够在你们的眼中变得更加简洁和易于理解。书页可不像你的 IDE 那样宽，每多一个字符都很珍贵。</p>
 <p>同样的，代码里并没有多少注释，这是因为对代码的几乎所有说明都在这段代码的前面或者后面的几段里完整地呈现了。当你要写一本包括代码的书时，你也可以模仿我去省略注释，否则你应该比我使用更多的 <code>//</code>。</p>
-<p>这本书的确包含了每一行代码并且告诉我们它的意义，但是整本书都没有提及我们应当如何编译并且运行它。我假设你能把这些代码以一个 Makefile 或者在 IDE 里的配置文件的方式去配置好环境并运行代码。这类教程很快就会随着各类工具的版本迭代而失效，但我希望这本书像白兰地一样能够保存很久，而不像家酿酒那样会很快过期。</p>
+<p>这本书的确包含了每一行代码并且告诉我们它的意义，但是整本书都没有提及我们应当如何编译并且运行它。我假设你能以一个 Makefile 或者在 IDE 里的配置文件的方式去配置好环境并运行代码。这类教程很快就会随着各类工具的版本迭代而失效，但我希望这本书像白兰地一样能够保存很久，而不像家酿酒那样会很快过期。</p>
 <h3><a href="#snippets" id="snippets"><small>1&#8202;.&#8202;2&#8202;.&#8202;2</small>代码片段</a></h3>
-<p>Since the book contains literally every line of code needed for the
-implementations, the snippets are quite precise. Also, because I try to keep the
-program in a runnable state even when major features are missing, sometimes we
-add temporary code that gets replaced in later snippets.</p>
-<p>A snippet with all the bells and whistles looks like this:</p>
+<p>鉴于整本书包含了所有实现所需的代码，这些片段都非常精确。另外，因为我一直在尝试让整个程序能够运行（为此不惜抛去一些特性），因此我们需要加入一些在后续片段中会被替换的临时代码。</p>
+<p>一个完整的片段长这样：</p>
 <div class="codehilite"><pre class="insert-before">
       default:
 </pre><div class="source-file"><em>lox/Scanner.java</em><br>
@@ -173,36 +170,18 @@ replace 1 line</div>
 </pre><pre class="insert-after">
         break;
 </pre></div>
-<div class="source-file-narrow"><em>lox/Scanner.java</em>, in <em>scanToken</em>(), replace 1 line</div>
-<p>In the center, you have the new code to add. It may have a few faded out lines
-above or below to show where it goes in the existing surrounding code. There is
-also a little blurb telling you in which file and where to place the snippet. If
-that blurb says &ldquo;replace _ lines&rdquo;, there is some existing code between the faded
-lines that you need to remove and replace with the new snippet.</p>
+<div class="source-file-narrow">文件名：<em>lox/Scanner.java</em>，在其中的 <em>scanToken</em>()中 替换 1 行</div>
+<p>在最中间的部分是我们需要添加的代码。它的上方或下方会有一些亮度较暗的代码，这是这周围已经存在的代码。旁边还有一个简单的说明告诉我们应当把这段代码放到哪里。如果它还说了&ldquo;替换 x 行&rdquo;，这就代表着在周围亮度较暗的代码的中间有一些你需要删除并用这一片段替换的代码。</p>
 <h3><a href="#asides" id="asides"><small>1&#8202;.&#8202;2&#8202;.&#8202;3</small>旁注</a></h3>
-<p><span name="joke">Asides</span> contain biographical sketches, historical
-background, references to related topics, and suggestions of other areas to
-explore. There&rsquo;s nothing that you <em>need</em> to know in them to understand later
-parts of the book, so you can skip them if you want. I won&rsquo;t judge you, but I
-might be a little sad.</p>
+<p><span name="joke">旁注</span>包含了一些人物传记、历史背景、相关主题和一些对探索其他部分的建议。这其中没有你<em>需要</em>去理解后续书中内容的要点，因此你完全可以跳过。我不能怎么样你，但我会有点伤心。</p>
 <aside name="joke">
-<p>Well, some asides do, at least. Most of them are just dumb jokes and amateurish
-drawings.</p>
+<p>好吧，可能真的有一些旁注是你对理解后文内容有必要的，但它们中的大部分只是一些愚蠢的笑话和业余画手的涂鸦。</p>
 </aside>
 <h3><a href="#challenges_" id="challenges_"><small>1&#8202;.&#8202;2&#8202;.&#8202;4</small>挑战</a></h3>
-<p>Each chapter ends with a few exercises. Unlike textbook problem sets, which tend
-to review material you already covered, these are to help you learn <em>more</em> than
-what&rsquo;s in the chapter. They force you to step off the guided path and explore on
-your own. They will make you research other languages, figure out how to
-implement features, or otherwise get you out of your comfort zone.</p>
-<p><span name="warning">Vanquish</span> the challenges and you&rsquo;ll come away with a
-broader understanding and possibly a few bumps and scrapes. Or skip them if you
-want to stay inside the comfy confines of the tour bus. It&rsquo;s your book.</p>
+<p>每一章都有一些简单的练习。不像一般教科书中那些只是用于复习的题目，这本书中的题目会帮助你学习比这一章中的知识<em>更多</em>的知识。它们强迫你不完全按照书里的路径去进行，而是帮助你去研究其他的语言，弄清它们的工作原理，或者只是帮你脱离舒适区。</p>
+<p><span name="warning">征服</span>这些挑战，你将对整个过程有更宽泛的理解或者可能碰上一些障碍。或者，你可以跳过他们如果你只想沿着书中的内容学习，毕竟它是你的书。</p>
 <aside name="warning">
-<p>A word of warning: the challenges often ask you to make changes to the
-interpreter you&rsquo;re building. You&rsquo;ll want to implement those in a copy of your
-code. The later chapters assume your interpreter is in a pristine
-(&ldquo;unchallenged&rdquo;?) state.</p>
+<p>警告：挑战题经常会要求你对你的解释器做出更改，因此建议你在你工作空间的副本中进行这些挑战。后续章节会假设你的解释器是原始的（没经过挑战题修改的）状态。</p>
 </aside>
 <h3><a href="#design-notes" id="design-notes"><small>1&#8202;.&#8202;2&#8202;.&#8202;5</small>设计说明</a></h3>
 <p>Most &ldquo;programming language&rdquo; books are strictly programming language
