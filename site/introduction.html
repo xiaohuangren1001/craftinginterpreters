@@ -186,7 +186,7 @@
 <h3><a href="#design-notes" id="design-notes"><small>1&#8202;.&#8202;2&#8202;.&#8202;5</small>设计说明</a></h3>
 <p>大部分&ldquo;编程语言&rdquo;书只严格讨论<em>实现</em>。它们很少讨论如果一个人想要去<em>设计</em>一门语言时应当做什么。实现部分很有意思因为它有非常<span name="benchmark">精确的定义</span>。程序员们似乎能够和只有黑和白，0和1的事情非常亲近。</p>
 <aside name="benchmark">
-<p>据我所知，很多编程语言黑客就是靠这个过活。你只需要把整个语言的语法之类的送给他们，不到一年的时间，代码和基准测试结果就会送回来。</p>
+<p>据我所知，很多编程语言黑客就是靠这个过活。你只需要把整个语言的语法给他们，不到一年的时间，代码和基准测试结果就会送回来。</p>
 </aside>
 <p>我个人认为这个世界只需要这么多 <span name="fortran">FORTRAN 77</span> 实现。在某一些地方，你会发现你需要设计一种<em>新</em>语言。一旦你开始进行<em>这项</em>工作，那么针对人性化的各种问题就会浮出水面，比如哪种特性更适于学习，如何平衡创新和与其他语言的互通，哪种语法更加可读和受众人群之类。</p>
 <aside name="fortran">
@@ -194,18 +194,11 @@
 </aside>
 <p>所有这些因素都将影响你语言的成功。我当然希望你的语言能够成功，因此在一些章节我以一篇&ldquo;设计说明&rdquo;作结，基本上就是一系列编程语言人文方面的论文。我并不是这方面的专家&mdash;&mdash;我不确定是否有人真的是&mdash;&mdash;所以请仔细拿捏你对这些话语的参考程度。这可能会让你做出来的语言更加易于理解，而这是我的主要目标。</p>
 <h2><a href="#the-first-interpreter" id="the-first-interpreter"><small>1&#8202;.&#8202;3</small>第一个解释器</a></h2>
-<p>We&rsquo;ll write our first interpreter, jlox, in <span name="lang">Java</span>. The
-focus is on <em>concepts</em>. We&rsquo;ll write the simplest, cleanest code we can to
-correctly implement the semantics of the language. This will get us comfortable
-with the basic techniques and also hone our understanding of exactly how the
-language is supposed to behave.</p>
+<p>我们将要在 <span name="lang">Java</span> 中写出我们的第一个解释器 jlox。这次的重点是<em>概念</em>。我们将会写出最简单、最整洁、能够正确实现这个语言的语法语义的代码。这样我们将能够非常容易理解这些基础技术并且能够让我们理解一个语言的内部是什么样的。</p>
 <aside name="lang">
-<p>The book uses Java and C, but readers have ported the code to <a href="https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations">many other
-languages</a>. If the languages I picked aren&rsquo;t your bag, take a look at
-those.</p>
+<p>这本书使用了 Java 和 C, 但读者们早就把这个语言用<a href="https://hub.fastgit.xyz/munificent/craftinginterpreters/wiki/Lox-implementations">很多其它语言</a>实现了。如果我选择的语言你并不擅长，不妨去参考一下他们的实现。</p>
 </aside>
-<p>Java is a great language for this. It&rsquo;s high level enough that we don&rsquo;t get
-overwhelmed by fiddly implementation details, but it&rsquo;s still pretty explicit.
+<p>Java 语言在这方面的表现很好。它比较高级，这样我们就不用实现那些细节，但它也需要更显式的方法去实现一门语言。
 Unlike in scripting languages, there tends to be less complex machinery hiding
 under the hood, and you&rsquo;ve got static types to see what data structures you&rsquo;re
 working with.</p>
