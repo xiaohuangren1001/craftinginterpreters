@@ -205,49 +205,21 @@
 <p>一个编译器从一种特定语言的文件中读取、翻译并以另一种语言为输出。你可以用任何语言实现一个编译器，包括编译器要编译的语言。用即将编译的语言写成编译器的过程称为<strong>自举</strong>.</p>
 <p>你当然不能直接用编译器的源码编译出编译器本身，但是如果你有同一语言的另一个其他语言的编译器实现，你可以用<em>那个</em>编译器去编译你即将使用的编译器。现在你可以用那个你编译过的版本去通过编译更高版本的自举编译器的方式进行版本迭代，紧接着你就可以把最初始的版本删掉了。这就是自举的全过程，用你自己的编译器编译出更好版本的自己，一步步迭代。</p><img src="image/introduction/bootstrap.png" alt="事实上，这是美国牛仔最原始的交通模式。" />
 </aside>
-<p>并且最后，Java 非常流行。这意味着And, finally, Java is hugely popular. That means there&rsquo;s a good chance you
-already know it, so there&rsquo;s less for you to learn to get going in the book. If
-you aren&rsquo;t that familiar with Java, don&rsquo;t freak out. I try to stick to a fairly
-minimal subset of it. I use the diamond operator from Java 7 to make things a
-little more terse, but that&rsquo;s about it as far as &ldquo;advanced&rdquo; features go. If you
-know another object-oriented language, like C# or C++, you can muddle through.</p>
-<p>By the end of part II, we&rsquo;ll have a simple, readable implementation. It&rsquo;s not
-very fast, but it&rsquo;s correct. However, we are only able to accomplish that by
-building on the Java virtual machine&rsquo;s own runtime facilities. We want to learn
-how Java <em>itself</em> implements those things.</p>
+<p>并且最后，Java 非常流行。这意味着你很可能早就知道它了，所以你需要在这本书里学习的 Java 基础知识会很少。如果你不是很熟悉 Java，也不用担心，我会尽可能使用其中最小的子集，其中最高级的特性应该就是 Java 7 中引入的泛型了。如果你学过其他的面向对象语言，比如 C# 或是 C++，你应该也可以听懂。</p>
+<p>在第二部分的结尾，我们将会有一个非常简单、可读性强的实现。它并不快，但是它能跑。但是，我们只是成功在 JVM 的基础上搭建了我们自己的运行时环境，而我们也想知道 Java <em>本身</em>是如何实现这些我们信手拈来的东西的。</p>
 <h2><a href="#the-second-interpreter" id="the-second-interpreter"><small>1&#8202;.&#8202;4</small>第二个解释器</a></h2>
-<p>So in the next part, we start all over again, but this time in C. C is the
-perfect language for understanding how an implementation <em>really</em> works, all the
-way down to the bytes in memory and the code flowing through the CPU.</p>
-<p>A big reason that we&rsquo;re using C is so I can show you things C is particularly
-good at, but that <em>does</em> mean you&rsquo;ll need to be pretty comfortable with it. You
-don&rsquo;t have to be the reincarnation of Dennis Ritchie, but you shouldn&rsquo;t be
-spooked by pointers either.</p>
-<p>If you aren&rsquo;t there yet, pick up an introductory book on C and chew through it,
-then come back here when you&rsquo;re done. In return, you&rsquo;ll come away from this book
-an even stronger C programmer. That&rsquo;s useful given how many language
-implementations are written in C: Lua, CPython, and Ruby&rsquo;s MRI, to name a few.</p>
-<p>In our C interpreter, <span name="clox">clox</span>, we are forced to implement
-for ourselves all the things Java gave us for free. We&rsquo;ll write our own dynamic
-array and hash table. We&rsquo;ll decide how objects are represented in memory, and
-build a garbage collector to reclaim them.</p>
+<p>所以在第三部分中，我们在 C 语言中推倒重来。C 是理解一个实现<em>真正</em>的工作原理的完美语言，以至于底层的例如内存中的内容和 CPU 的代码执行过程的细节都能够呈现在我们眼前。</p>
+<p>另一个用 C 的主要原因是 C 确实有它擅长的地方，但是这<em>并不</em>意味着你需要非常熟练地使用它。你不需要称为 C 语言之父转世，但你也不应该被指针干趴下。</p>
+<p>如果你对 C 的了解和使用还没到那个地步，那么请你拿出一本 C 语言的入门教程书，沿着书中的内容做一遍，然后再回头继续看这本书。作为回报，当你回到这本书的范畴内时，你已经是一个比较强大的 C 程序员了。这将会非常有用，因为很多语言实现都是以 C 写成，比如：Lua， CPython，Ruby 的 MRI，还有很多不知名的语言。</p>
+<p>在我们的 C 解释器 <span name="clox">clox</span> 中，我们将被迫实现很多 Java 中早已有之的功能。例如，我们需要写自己的哈希表和动态数组。我们还要揣摩对象在内存中的表达方式，然后需要自己建立垃圾回收机制。</p>
 <aside name="clox">
-<p>I pronounce the name like &ldquo;sea-locks&rdquo;, but you can say it &ldquo;clocks&rdquo; or even
-&ldquo;cloch&rdquo;, where you pronounce the &ldquo;x&rdquo; like the Greeks do if it makes you happy.</p>
+<p>我习惯按&ldquo;sea-locks&rdquo;发音，但叫它&ldquo;clocks&rdquo;亦无不可，你甚至可以像希腊人那样用&ldquo;cloch&rdquo;发音（如果你乐意）。</p>
 </aside>
-<p>Our Java implementation was focused on being correct. Now that we have that
-down, we&rsquo;ll turn to also being <em>fast</em>. Our C interpreter will contain a <span
-name="compiler">compiler</span> that translates Lox to an efficient bytecode
-representation (don&rsquo;t worry, I&rsquo;ll get into what that means soon), which it then
-executes. This is the same technique used by implementations of Lua, Python,
-Ruby, PHP, and many other successful languages.</p>
+<p>我们的 Java 实现主要是为了有正确的实现。现在我们不仅要了解底层知识，我们还想让它<em>快</em>。我们的 C 解释器将会包含一个<span name="compiler">编译器</span>，它将会把 Lox 代码翻译成一套非常方便的字节码（别担心，我们很快就会解释之前那些术语）然后交由虚拟机执行。这和 Lua、Python、Ruby、PHP 和其他很多成功的语言实现类似。</p>
 <aside name="compiler">
 <p>你以为这只是一本教你做解释器的书吗？它其实也时一本教你做编译器的书，一本书的钱相当于买了两本书！</p>
 </aside>
-<p>We&rsquo;ll even try our hand at benchmarking and optimization. By the end, we&rsquo;ll have
-a robust, accurate, fast interpreter for our language, able to keep up with
-other professional caliber implementations out there. Not bad for one book and a
-few thousand lines of code.</p>
+<p>我们甚至会在优化和测速方面略有涉及。在这一部分的结尾，我们将会有一个鲁棒性强、实现精准而且十分快速的解释器，并且能够跟上其他语言的基础实现。这个成果对一本书和几千行代码来说已经很不错了。</p>
 <div class="challenges">
 <h2><a href="#challenges" id="challenges">挑战</a></h2>
 <ol>
