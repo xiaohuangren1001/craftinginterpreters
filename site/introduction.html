@@ -209,7 +209,7 @@
 <p>在第二部分的结尾，我们将会有一个非常简单、可读性强的实现。它并不快，但是它能跑。但是，我们只是成功在 JVM 的基础上搭建了我们自己的运行时环境，而我们也想知道 Java <em>本身</em>是如何实现这些我们信手拈来的东西的。</p>
 <h2><a href="#the-second-interpreter" id="the-second-interpreter"><small>1&#8202;.&#8202;4</small>第二个解释器</a></h2>
 <p>所以在第三部分中，我们在 C 语言中推倒重来。C 是理解一个实现<em>真正</em>的工作原理的完美语言，以至于底层的例如内存中的内容和 CPU 的代码执行过程的细节都能够呈现在我们眼前。</p>
-<p>另一个用 C 的主要原因是 C 确实有它擅长的地方，但是这<em>并不</em>意味着你需要非常熟练地使用它。你不需要称为 C 语言之父转世，但你也不应该被指针干趴下。</p>
+<p>另一个用 C 的主要原因是 C 确实有它擅长的地方，但是这<em>并不</em>意味着你需要非常熟练地使用它。你不需要成为 C 语言之父转世，但你也不应该被指针干趴下。</p>
 <p>如果你对 C 的了解和使用还没到那个地步，那么请你拿出一本 C 语言的入门教程书，沿着书中的内容做一遍，然后再回头继续看这本书。作为回报，当你回到这本书的范畴内时，你已经是一个比较强大的 C 程序员了。这将会非常有用，因为很多语言实现都是以 C 写成，比如：Lua， CPython，Ruby 的 MRI，还有很多不知名的语言。</p>
 <p>在我们的 C 解释器 <span name="clox">clox</span> 中，我们将被迫实现很多 Java 中早已有之的功能。例如，我们需要写自己的哈希表和动态数组。我们还要揣摩对象在内存中的表达方式，然后需要自己建立垃圾回收机制。</p>
 <aside name="clox">
@@ -224,8 +224,7 @@
 <h2><a href="#challenges" id="challenges">挑战</a></h2>
 <ol>
 <li>
-<p>There are at least six domain-specific languages used in the <a href="https://github.com/munificent/craftinginterpreters">little system
-I cobbled together</a> to write and publish this book. What are they?</p>
+<p>在我的这本<a href="https://hub.fastgiy.xyz/munificent/craftinginterpreters">小书</a>中我至少用了六种小型语言。你能找出它们吗？</p>
 </li>
 <li>
 <p>Get a &ldquo;Hello, world!&rdquo; program written and running in Java. Set up whatever
