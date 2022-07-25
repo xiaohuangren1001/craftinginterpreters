@@ -198,32 +198,14 @@
 <aside name="lang">
 <p>这本书使用了 Java 和 C, 但读者们早就把这个语言用<a href="https://hub.fastgit.xyz/munificent/craftinginterpreters/wiki/Lox-implementations">很多其它语言</a>实现了。如果我选择的语言你并不擅长，不妨去参考一下他们的实现。</p>
 </aside>
-<p>Java 语言在这方面的表现很好。它比较高级，这样我们就不用实现那些细节，但它也需要更显式的方法去实现一门语言。
-Unlike in scripting languages, there tends to be less complex machinery hiding
-under the hood, and you&rsquo;ve got static types to see what data structures you&rsquo;re
-working with.</p>
-<p>I also chose Java specifically because it is an object-oriented language. That
-paradigm swept the programming world in the &rsquo;90s and is now the dominant way of
-thinking for millions of programmers. Odds are good you&rsquo;re already used to
-organizing code into classes and methods, so we&rsquo;ll keep you in that comfort
-zone.</p>
-<p>While academic language folks sometimes look down on object-oriented languages,
-the reality is that they are widely used even for language work. GCC and LLVM
-are written in C++, as are most JavaScript virtual machines. Object-oriented
-languages are ubiquitous, and the tools and compilers <em>for</em> a language are often
-written <em>in</em> the <span name="host">same language</span>.</p>
+<p>Java 语言在这方面的表现很好。它比较高级，这样我们就不用实现那些细节，但它也需要更显式的方法去实现一门语言。Java 被刻意设计为一种强类型语言，并且掩盖了很多底层细节，这与一些脚本语言类似。</p>
+<p>我选择 Java 的另一个原因是它是面向对象的。这种编程方式在上世纪九十年代席卷了整个编程界，现在它已是大多数程序员的主要思维方式。你很可能已经在用类和方法组织代码了，所以我们将会把你留在这个舒适区。</p>
+<p>当学院派的语言拥趸们还在持续说面向对象语言的坏话时，这些语言即使是在编程语言领域已经非常常用了。GCC 和 LLVM 都是用 C++ 写成，很多 JavaScript 虚拟机也是。面向对象语言已经无处不在，而通常<em>为</em>某一语言编写的工具和编译器是由这一语言<em>本身</em><span name="host">所写成</span>。</p>
 <aside name="host">
-<p>A compiler reads files in one language, translates them, and outputs files in
-another language. You can implement a compiler in any language, including the
-same language it compiles, a process called <strong>self-hosting</strong>.</p>
-<p>You can&rsquo;t compile your compiler using itself yet, but if you have another
-compiler for your language written in some other language, you use <em>that</em> one to
-compile your compiler once. Now you can use the compiled version of your own
-compiler to compile future versions of itself, and you can discard the original
-one compiled from the other compiler. This is called <strong>bootstrapping</strong>, from
-the image of pulling yourself up by your own bootstraps.</p><img src="image/introduction/bootstrap.png" alt="Fact: This is the primary mode of transportation of the American cowboy." />
+<p>一个编译器从一种特定语言的文件中读取、翻译并以另一种语言为输出。你可以用任何语言实现一个编译器，包括编译器要编译的语言。用即将编译的语言写成编译器的过程称为<strong>自举</strong>.</p>
+<p>你当然不能直接用编译器的源码编译出编译器本身，但是如果你有同一语言的另一个其他语言的编译器实现，你可以用<em>那个</em>编译器去编译你即将使用的编译器。现在你可以用那个你编译过的版本去通过编译更高版本的自举编译器的方式进行版本迭代，紧接着你就可以把最初始的版本删掉了。这就是自举的全过程，用你自己的编译器编译出更好版本的自己，一步步迭代。</p><img src="image/introduction/bootstrap.png" alt="事实上，这是美国牛仔最原始的交通模式。" />
 </aside>
-<p>And, finally, Java is hugely popular. That means there&rsquo;s a good chance you
+<p>并且最后，Java 非常流行。这意味着And, finally, Java is hugely popular. That means there&rsquo;s a good chance you
 already know it, so there&rsquo;s less for you to learn to get going in the book. If
 you aren&rsquo;t that familiar with Java, don&rsquo;t freak out. I try to stick to a fairly
 minimal subset of it. I use the diamond operator from Java 7 to make things a
